@@ -77,11 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Dr. Waqar Bin Saif | Hair Transplant & Aesthetic Clinic" },
+      {
+        name: "description",
+        content:
+          "Premium hair transplant surgery and aesthetic medicine by Dr. Waqar Bin Saif Khattak.",
+      },
+      { name: "author", content: "Dr. Waqar Bin Saif Khattak" },
+      { property: "og:title", content: "Dr. Waqar Bin Saif | Hair Transplant & Aesthetic Clinic" },
+      {
+        property: "og:description",
+        content:
+          "Premium hair transplant surgery and aesthetic medicine by Dr. Waqar Bin Saif Khattak.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
