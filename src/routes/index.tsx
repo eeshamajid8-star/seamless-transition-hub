@@ -153,7 +153,7 @@ function Home() {
   const [faqOpen, setFaqOpen] = useState<number | null>(0);
 
   return (
-    <div className="relative bg-background">
+    <div id="top" className="relative bg-background">
       <IntroLogo />
 
       {/* intro screen spacer */}
