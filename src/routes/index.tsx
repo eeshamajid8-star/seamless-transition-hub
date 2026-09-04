@@ -553,6 +553,7 @@ function Home() {
               </div>
             </Reveal>
           ))}
+          </div>
         </div>
       </section>
 
