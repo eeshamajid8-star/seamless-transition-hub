@@ -261,6 +261,7 @@ function Home() {
               </article>
             </Reveal>
           ))}
+          </div>
         </div>
       </section>
 
