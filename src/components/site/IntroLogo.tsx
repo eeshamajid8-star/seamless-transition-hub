@@ -108,36 +108,17 @@ export function IntroLogo() {
               Aesthetic &amp; Hair Restoration
             </p>
           </div>
-          <nav className="hidden items-center gap-8 text-sm text-muted-foreground lg:flex">
-            {NAV.map((n) => (
-              <a key={n.href} href={n.href} className="nav-link">
-                {n.label}
-              </a>
-            ))}
-          </nav>
           <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
-            className="ml-auto grid size-11 place-items-center rounded-md border border-border text-gold transition-colors hover:border-gold hover:bg-accent lg:hidden"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+            className="ml-auto grid size-11 place-items-center rounded-md border border-gold/30 text-gold transition-all duration-400 hover:border-gold hover:bg-accent hover:shadow-[var(--shadow-gold)]"
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            <Menu className="size-5" />
           </button>
         </div>
-        {open && (
-          <div className="border-t border-border/60 bg-background/95 px-6 py-4 lg:hidden">
-            {NAV.map((n) => (
-              <a
-                key={n.href}
-                href={n.href}
-                onClick={() => setOpen(false)}
-                className="block border-b border-border/40 py-3 text-sm text-muted-foreground transition-colors last:border-0 hover:text-gold"
-              >
-                {n.label}
-              </a>
-            ))}
-          </div>
-        )}
       </motion.header>
+
+      <DrawerMenu open={open} onClose={() => setOpen(false)} />
     </>
   );
 }
