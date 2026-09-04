@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
-
-const NAV = [
-  { label: "Treatments", href: "#treatments" },
-  { label: "Results", href: "#results" },
-  { label: "Journey", href: "#journey" },
-  { label: "Dr. Waqar", href: "#doctor" },
-  { label: "Clinic", href: "#clinic" },
-  { label: "FAQs", href: "#faqs" },
-];
+import { DrawerMenu } from "./DrawerMenu";
 
 export function IntroLogo() {
   const { scrollY } = useScroll();
