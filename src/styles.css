@@ -186,3 +186,21 @@
     transform-origin: left;
   }
 }
+
+/* Light (white) sections — re-scopes the semantic tokens so every child
+   component keeps using the same token names. */
+@utility section-light {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0.012 60);
+  --card: oklch(0.985 0.004 85);
+  --card-foreground: oklch(0.18 0.012 60);
+  --muted-foreground: oklch(0.48 0.012 70);
+  --accent: oklch(0.96 0.012 85);
+  --border: oklch(0.2 0.02 70 / 14%);
+  --gold: oklch(0.62 0.11 74);
+  --gold-soft: oklch(0.74 0.1 80);
+  --gold-deep: oklch(0.5 0.09 68);
+  --primary-foreground: oklch(1 0 0);
+  background-color: var(--background);
+  color: var(--foreground);
+}
