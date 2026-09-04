@@ -226,7 +226,8 @@ function Home() {
       </section>
 
       {/* TREATMENTS */}
-      <section id="treatments" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <section id="treatments" className="section-light px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Signature Treatments"
           title={
@@ -388,7 +389,7 @@ function Home() {
       </section>
 
       {/* DOCTOR */}
-      <section id="doctor" className="border-y border-border bg-card/50 py-24 md:py-32">
+      <section id="doctor" className="section-light border-y border-border py-24 md:py-32">
         <div className="mx-auto max-w-6xl px-6">
           <SectionHeading eyebrow="Meet Dr. Waqar" title="A Passion For Perfection" />
           <div className="mt-14 grid items-center gap-10 md:grid-cols-2">
@@ -523,7 +524,8 @@ function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faqs" className="mx-auto max-w-3xl px-6 py-24 md:py-32">
+      <section id="faqs" className="section-light px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-3xl">
         <SectionHeading eyebrow="Frequently Asked Questions" title="Quick Answers" />
         <div className="mt-12 divide-y divide-border border-y border-border">
           {faqs.map((f, i) => (
