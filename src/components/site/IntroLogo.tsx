@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Menu } from "lucide-react";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import { DrawerMenu } from "./DrawerMenu";
+import { openMenu } from "./menu-store";
 
 export function IntroLogo() {
   const { scrollY } = useScroll();
   const [dims, setDims] = useState({ w: 1200, h: 900 });
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const update = () => setDims({ w: window.innerWidth, h: window.innerHeight });
@@ -109,7 +109,7 @@ export function IntroLogo() {
             </p>
           </div>
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => openMenu()}
             aria-label="Open menu"
             className="ml-auto grid size-11 place-items-center rounded-md border border-gold/30 text-gold transition-all duration-400 hover:border-gold hover:bg-accent hover:shadow-[var(--shadow-gold)]"
           >
@@ -118,7 +118,7 @@ export function IntroLogo() {
         </div>
       </motion.header>
 
-      <DrawerMenu open={open} onClose={() => setOpen(false)} />
+      <DrawerMenu />
     </>
   );
 }

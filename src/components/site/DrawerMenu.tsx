@@ -1,33 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   ArrowLeft,
-  CalendarClock,
+  CalendarCheck2,
   ChevronRight,
-  Home,
+  House,
   PhoneCall,
-  ReceiptText,
-  Scissors,
-  Smile,
+  ScrollText,
   Sparkles,
-  Users,
+  Sprout,
+  UsersRound,
+  Waves,
   X,
 } from "lucide-react";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
+import { closeMenu, useMenuState } from "./menu-store";
 
 type Item = {
   label: string;
-  icon: typeof Home;
+  icon: typeof House;
   href?: string;
   tagline?: string;
   children?: string[];
 };
 
-const MENU: Item[] = [
-  { label: "Home", icon: Home, href: "#top" },
+export const MENU: Item[] = [
+  { label: "Home", icon: House, href: "#top" },
   {
     label: "Hair transplant",
-    icon: Scissors,
+    icon: Sprout,
     tagline: "Precision. Density. Natural Hairlines.",
     children: [
       "FUE method",
@@ -44,7 +45,7 @@ const MENU: Item[] = [
   },
   {
     label: "Hair Regeneration",
-    icon: Sparkles,
+    icon: Waves,
     tagline: "Restore. Rejuvenate. Regrow.",
     children: [
       "Hair PRP",
@@ -56,7 +57,7 @@ const MENU: Item[] = [
   },
   {
     label: "Skin Treatment",
-    icon: Smile,
+    icon: Sparkles,
     tagline: "Clarity. Balance. Radiance.",
     children: [
       "HydraFacial",
@@ -71,17 +72,23 @@ const MENU: Item[] = [
       "Fat loss treatment",
     ],
   },
-  { label: "Rate list", icon: ReceiptText, href: "#treatments" },
-  { label: "About us", icon: Users, href: "#doctor" },
-  { label: "Location Appointment", icon: CalendarClock, href: "#contact" },
+  { label: "Rate list", icon: ScrollText, href: "#treatments" },
+  { label: "About us", icon: UsersRound, href: "#doctor" },
+  { label: "Location Appointment", icon: CalendarCheck2, href: "#contact" },
   { label: "Contact us", icon: PhoneCall, href: "#contact" },
 ];
 
-export function DrawerMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+export function DrawerMenu() {
+  const { open, category } = useMenuState();
   const [active, setActive] = useState<Item | null>(null);
 
+  useEffect(() => {
+    if (!open) return;
+    setActive(category ? (MENU.find((m) => m.label === category) ?? null) : null);
+  }, [open, category]);
+
   const close = () => {
-    onClose();
+    closeMenu();
     setTimeout(() => setActive(null), 350);
   };
 
@@ -105,13 +112,13 @@ export function DrawerMenu({ open, onClose }: { open: boolean; onClose: () => vo
             className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-sm flex-col overflow-y-auto border-l border-gold/25 bg-background"
           >
             <div className="flex items-start justify-between gap-4 px-6 pt-7 pb-5">
-              <div className="flex items-center gap-4">
+              <div className="flex min-w-0 items-center gap-4">
                 <img
                   src={logoAsset.url}
                   alt="WBSK"
                   className="size-14 shrink-0 rounded-full border border-gold/40 object-cover"
                 />
-                <div className="leading-tight">
+                <div className="min-w-0 leading-tight">
                   <p className="font-display text-xl text-gold">Dr Waqar</p>
                   <p className="font-display text-xl text-gold">Bin Saif Khattak</p>
                   <p className="mt-1 text-[0.52rem] tracking-[0.16em] text-muted-foreground uppercase">
@@ -150,14 +157,16 @@ export function DrawerMenu({ open, onClose }: { open: boolean; onClose: () => vo
                           if (item.children) setActive(item);
                           else {
                             close();
-                            if (item.href) window.location.hash = item.href;
+                            if (item.href) window.location.hash = item.href.replace("#", "");
                           }
                         }}
                         className="group flex w-full items-center gap-4 rounded-lg border border-gold/20 bg-card px-4 py-3.5 text-left transition-all duration-400 hover:border-gold/70 hover:bg-accent hover:shadow-[var(--shadow-gold)]"
                       >
-                        <item.icon className="size-5 shrink-0 text-gold transition-transform duration-400 group-hover:scale-110" />
-                        <span className="flex-1 text-sm">{item.label}</span>
-                        <ChevronRight className="size-4 text-gold transition-transform duration-400 group-hover:translate-x-1" />
+                        <span className="grid size-9 shrink-0 place-items-center rounded-full border border-gold/35 text-gold transition-all duration-400 group-hover:border-gold group-hover:shadow-[var(--shadow-gold)]">
+                          <item.icon className="size-[18px]" strokeWidth={1.5} />
+                        </span>
+                        <span className="min-w-0 flex-1 text-sm">{item.label}</span>
+                        <ChevronRight className="size-4 shrink-0 text-gold transition-transform duration-400 group-hover:translate-x-1" />
                       </button>
                     ))}
                   </motion.nav>
@@ -173,11 +182,11 @@ export function DrawerMenu({ open, onClose }: { open: boolean; onClose: () => vo
                       <button
                         onClick={() => setActive(null)}
                         aria-label="Back"
-                        className="grid size-9 place-items-center rounded-md border border-border text-gold transition-colors hover:border-gold hover:bg-accent"
+                        className="grid size-9 shrink-0 place-items-center rounded-md border border-border text-gold transition-colors hover:border-gold hover:bg-accent"
                       >
                         <ArrowLeft className="size-4" />
                       </button>
-                      <h3 className="font-display text-2xl text-gold">{active.label}</h3>
+                      <h3 className="min-w-0 font-display text-2xl text-gold">{active.label}</h3>
                     </div>
                     {active.tagline && (
                       <p className="mb-6 text-center text-xs tracking-[0.14em] text-muted-foreground">
@@ -195,8 +204,8 @@ export function DrawerMenu({ open, onClose }: { open: boolean; onClose: () => vo
                           <span className="grid size-9 shrink-0 place-items-center rounded-full border border-gold/40 text-xs text-gold">
                             {i + 1}
                           </span>
-                          <span className="flex-1 text-sm">{c}</span>
-                          <ChevronRight className="size-4 text-gold transition-transform duration-400 group-hover:translate-x-1" />
+                          <span className="min-w-0 flex-1 text-sm">{c}</span>
+                          <ChevronRight className="size-4 shrink-0 text-gold transition-transform duration-400 group-hover:translate-x-1" />
                         </a>
                       ))}
                     </div>

@@ -13,17 +13,25 @@ import {
   Award,
   Users,
   Sparkles,
+  Sprout,
+  Syringe,
+  Smile,
+  Droplets,
 } from "lucide-react";
 
 import { IntroLogo } from "@/components/site/IntroLogo";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { CompareSlider } from "@/components/site/BeforeAfter";
 import { StackedSteps, type Step } from "@/components/site/Steps";
+import { HeroSlider, type HeroSlide } from "@/components/site/HeroSlider";
+import { VideoCarousel } from "@/components/site/VideoCarousel";
+import { openMenu, type MenuCategory } from "@/components/site/menu-store";
 
 import bannerAsset from "@/assets/banner.jpeg.asset.json";
 import hairTransAsset from "@/assets/hairtrans.jpeg.asset.json";
 import hair2Asset from "@/assets/hair2.jpeg.asset.json";
 import procedureVideo from "@/assets/procedure.mp4.asset.json";
+import procedureVideo2 from "@/assets/procedure2.mp4.asset.json";
 import before1 from "@/assets/before1.jpg";
 import after1 from "@/assets/after1.jpg";
 import before2 from "@/assets/before2.jpg";
@@ -59,25 +67,87 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const treatments = [
+const treatments: {
+  title: string;
+  tags: string;
+  body: string;
+  image: string;
+  category: MenuCategory;
+}[] = [
   {
     title: "Hair Transplant",
     tags: "FUE • Sapphire FUE • DHI • FUT • Hybrid",
-    body: "Natural hairlines, permanent results.",
+    body: "Natural and personality-changing results",
     image: hairTransAsset.url,
+    category: "Hair transplant",
   },
   {
     title: "Hair Regeneration",
     tags: "PRP • PRGF • Exosomes",
     body: "Stimulate growth. Stronger. Thicker. Fuller.",
     image: prp,
+    category: "Hair Regeneration",
   },
   {
     title: "Aesthetic Medicine",
-    tags: "Skin • Injectables • Advanced Therapies",
+    tags: "Skin Treatment • Injectables • Advanced Therapies",
     body: "Enhance your natural beauty.",
     image: aestheticImg,
+    category: "Skin Treatment",
   },
+];
+
+const heroSlides: HeroSlide[] = [
+  {
+    kind: "image",
+    src: bannerAsset.url,
+    eyebrow: "The art of",
+    line1: "HAIR",
+    line2: "RESTORATION",
+    sub: "Precision. Natural Results. Personalized Care.",
+  },
+  {
+    kind: "video",
+    src: procedureVideo.url,
+    poster: hairTransAsset.url,
+    eyebrow: "Inside the theatre",
+    line1: "SURGICAL",
+    line2: "PRECISION",
+    sub: "Every graft placed by hand, under magnification.",
+  },
+  {
+    kind: "image",
+    src: prp,
+    eyebrow: "Regeneration",
+    line1: "PRP • PRGF",
+    line2: "EXOSOMES",
+    sub: "Stimulate growth. Stronger, thicker, fuller hair.",
+  },
+  {
+    kind: "video",
+    src: procedureVideo2.url,
+    poster: bannerAsset.url,
+    eyebrow: "Craft in motion",
+    line1: "HAIRLINE",
+    line2: "ARTISTRY",
+    sub: "Designed millimetre by millimetre for your face.",
+  },
+  {
+    kind: "image",
+    src: aestheticImg,
+    eyebrow: "Aesthetic medicine",
+    line1: "SKIN &",
+    line2: "AESTHETICS",
+    sub: "Clarity, balance and radiance — naturally refined.",
+  },
+];
+
+const heroIcons: { icon: typeof Sprout; label: string; href: string }[] = [
+  { icon: Sprout, label: "Hair\nTransplant", href: "#treatments" },
+  { icon: Syringe, label: "PRP / PRGF\nExosomes", href: "#treatments" },
+  { icon: Smile, label: "Skin\nAesthetics", href: "#treatments" },
+  { icon: Droplets, label: "Botox\n& Fillers", href: "#treatments" },
+  { icon: Star, label: "Reviews", href: "#clinic" },
 ];
 
 const results = [
