@@ -109,7 +109,7 @@ export function IntroLogo() {
             </p>
           </div>
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => openMenu()}
             aria-label="Open menu"
             className="ml-auto grid size-11 place-items-center rounded-md border border-gold/30 text-gold transition-all duration-400 hover:border-gold hover:bg-accent hover:shadow-[var(--shadow-gold)]"
           >
@@ -118,7 +118,7 @@ export function IntroLogo() {
         </div>
       </motion.header>
 
-      <DrawerMenu open={open} onClose={() => setOpen(false)} />
+      <DrawerMenu />
     </>
   );
 }
