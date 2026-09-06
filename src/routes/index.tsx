@@ -13,17 +13,25 @@ import {
   Award,
   Users,
   Sparkles,
+  Sprout,
+  Syringe,
+  Smile,
+  Droplets,
 } from "lucide-react";
 
 import { IntroLogo } from "@/components/site/IntroLogo";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { CompareSlider } from "@/components/site/BeforeAfter";
 import { StackedSteps, type Step } from "@/components/site/Steps";
+import { HeroSlider, type HeroSlide } from "@/components/site/HeroSlider";
+import { VideoCarousel } from "@/components/site/VideoCarousel";
+import { openMenu, type MenuCategory } from "@/components/site/menu-store";
 
 import bannerAsset from "@/assets/banner.jpeg.asset.json";
 import hairTransAsset from "@/assets/hairtrans.jpeg.asset.json";
 import hair2Asset from "@/assets/hair2.jpeg.asset.json";
 import procedureVideo from "@/assets/procedure.mp4.asset.json";
+import procedureVideo2 from "@/assets/procedure2.mp4.asset.json";
 import before1 from "@/assets/before1.jpg";
 import after1 from "@/assets/after1.jpg";
 import before2 from "@/assets/before2.jpg";
