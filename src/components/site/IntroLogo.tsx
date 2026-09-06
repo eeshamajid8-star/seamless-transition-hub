@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { Menu } from "lucide-react";
 import logoAsset from "@/assets/logo.jpeg.asset.json";
 import { DrawerMenu } from "./DrawerMenu";
+import { openMenu } from "./menu-store";
 
 export function IntroLogo() {
   const { scrollY } = useScroll();
   const [dims, setDims] = useState({ w: 1200, h: 900 });
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const update = () => setDims({ w: window.innerWidth, h: window.innerHeight });
