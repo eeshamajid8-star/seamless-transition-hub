@@ -106,40 +106,10 @@ const heroSlides: HeroSlide[] = [
     line2: "RESTORATION",
     sub: "Precision. Natural Results. Personalized Care.",
   },
-  {
-    kind: "video",
-    src: procedureVideo.url,
-    poster: hairTransAsset.url,
-    eyebrow: "Inside the theatre",
-    line1: "SURGICAL",
-    line2: "PRECISION",
-    sub: "Every graft placed by hand, under magnification.",
-  },
-  {
-    kind: "image",
-    src: prp,
-    eyebrow: "Regeneration",
-    line1: "PRP • PRGF",
-    line2: "EXOSOMES",
-    sub: "Stimulate growth. Stronger, thicker, fuller hair.",
-  },
-  {
-    kind: "video",
-    src: procedureVideo2.url,
-    poster: bannerAsset.url,
-    eyebrow: "Craft in motion",
-    line1: "HAIRLINE",
-    line2: "ARTISTRY",
-    sub: "Designed millimetre by millimetre for your face.",
-  },
-  {
-    kind: "image",
-    src: aestheticImg,
-    eyebrow: "Aesthetic medicine",
-    line1: "SKIN &",
-    line2: "AESTHETICS",
-    sub: "Clarity, balance and radiance — naturally refined.",
-  },
+  { kind: "video", src: procedureVideo.url, poster: hairTransAsset.url },
+  { kind: "image", src: prp },
+  { kind: "video", src: procedureVideo2.url, poster: bannerAsset.url },
+  { kind: "image", src: aestheticImg },
 ];
 
 const heroIcons: { icon: typeof Sprout; label: string; href: string }[] = [
@@ -266,27 +236,6 @@ function Home() {
               </a>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* STATS */}
-      <section className="border-y border-border bg-card/60">
-        <div className="mx-auto grid max-w-5xl grid-cols-3 divide-x divide-border">
-          {[
-            { icon: Award, value: "8+", label: "Years Experience" },
-            { icon: Users, value: "5000+", label: "Happy Patients" },
-            { icon: Sparkles, value: "Advanced", label: "Technology" },
-          ].map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08}>
-              <div className="group flex flex-col items-center gap-2 px-3 py-10 text-center transition-colors hover:bg-accent/40">
-                <s.icon className="size-6 text-gold transition-transform duration-500 group-hover:scale-110" />
-                <p className="font-display text-2xl text-gold">{s.value}</p>
-                <p className="text-[0.58rem] tracking-[0.22em] text-muted-foreground uppercase">
-                  {s.label}
-                </p>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
 
