@@ -10,7 +10,6 @@ import {
   MessageCircle,
   Star,
   Check,
-  Sparkles,
   Sprout,
   Syringe,
   Smile,
