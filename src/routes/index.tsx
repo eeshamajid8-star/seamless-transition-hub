@@ -294,20 +294,30 @@ function Home() {
       <section id="treatments" className="section-light px-6 py-24 md:py-32">
         <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Signature Treatments"
+          eyebrow="Discover Our Treatment"
           title={
-            <>
-              Solutions For Your
-              <br />
-              Hair &amp; Aesthetic Goals
-            </>
+            <span className="block space-y-1">
+              <span className="block">
+                Restore <span className="text-gold">—</span> What you&rsquo;ve lost
+              </span>
+              <span className="block">
+                Refine <span className="text-gold">—</span> What you already have
+              </span>
+              <span className="block">
+                Redefine <span className="text-gold">—</span> What&rsquo;s possible
+              </span>
+            </span>
           }
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {treatments.map((t, i) => (
             <Reveal key={t.title} delay={i * 0.1}>
-              <article className="glow-ring media-zoom group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card">
-                <div className="h-52 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => openMenu(t.category)}
+                className="glow-ring media-zoom group flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-card text-left"
+              >
+                <div className="h-52 w-full overflow-hidden">
                   <img
                     src={t.image}
                     alt={t.title}
@@ -323,7 +333,7 @@ function Home() {
                     <ArrowRight className="size-4" />
                   </span>
                 </div>
-              </article>
+              </button>
             </Reveal>
           ))}
           </div>
@@ -331,13 +341,7 @@ function Home() {
       </section>
 
       {/* QUOTE */}
-      <section className="relative overflow-hidden border-y border-border">
-        <img
-          src={clinic1}
-          alt="WBSK clinic interior"
-          loading="lazy"
-          className="absolute inset-0 size-full object-cover opacity-25"
-        />
+      <section className="relative overflow-hidden border-y border-border bg-card/40">
         <div className="relative mx-auto max-w-3xl px-6 py-24 text-center">
           <Reveal>
             <p className="font-display text-5xl text-gold">&ldquo;</p>
