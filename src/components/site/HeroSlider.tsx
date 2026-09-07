@@ -25,7 +25,7 @@ export function HeroSlider({
     return () => window.clearInterval(id);
   }, [slides.length, interval]);
 
-  const slide = slides[i];
+  const slide = slides[i]!;
 
   return (
     <>

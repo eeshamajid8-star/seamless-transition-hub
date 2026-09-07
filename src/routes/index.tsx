@@ -230,47 +230,42 @@ function Home() {
       <div className="h-screen" aria-hidden />
 
       {/* HERO */}
-      <section className="relative min-h-[92vh] overflow-hidden">
-        <img
-          src={bannerAsset.url}
-          alt="Dr. Waqar Bin Saif performing a hair transplant procedure"
-          className="absolute inset-0 size-full object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-background via-background/70 to-background/40" />
-        <div className="relative mx-auto flex min-h-[92vh] max-w-7xl flex-col justify-end px-6 pb-20 md:pb-28">
-          <Reveal>
-            <p className="eyebrow">The art of</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h1 className="mt-4 max-w-3xl text-6xl leading-[0.95] sm:text-7xl md:text-8xl">
-              <span className="text-gold-gradient">HAIR</span>
-              <br />
-              <span className="text-gold-gradient">RESTORATION</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-foreground">
-              Precision. Natural Results.
-              <br />
-              Personalized Care.
-            </p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="mt-10 flex max-w-md flex-col gap-3 sm:max-w-xl sm:flex-row">
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pt-28 pb-12 sm:px-6 md:pb-20">
+          <HeroSlider slides={heroSlides} />
+
+          <div className="relative mt-8 flex w-full flex-col gap-3 sm:max-w-xl sm:flex-row">
+            <a
+              href="#contact"
+              className="glow-ring bg-gold-gradient flex items-center justify-between gap-4 rounded-md border border-transparent px-5 py-3.5 text-xs font-medium tracking-[0.16em] text-primary-foreground uppercase sm:px-6 sm:py-4 sm:text-sm"
+            >
+              Book Consultation <CalendarDays className="size-4 shrink-0" />
+            </a>
+            <a
+              href="#results"
+              className="glow-ring flex items-center justify-between gap-4 rounded-md border border-gold/40 bg-ink/50 px-5 py-3.5 text-xs tracking-[0.16em] text-foreground uppercase backdrop-blur-sm sm:px-6 sm:py-4 sm:text-sm"
+            >
+              View Results <ArrowRight className="size-4 shrink-0 text-gold" />
+            </a>
+          </div>
+
+          <div className="relative mt-10 grid grid-cols-5 gap-1 sm:gap-4">
+            {heroIcons.map((h) => (
               <a
-                href="#contact"
-                className="glow-ring bg-gold-gradient flex items-center justify-between gap-4 rounded-md border border-transparent px-6 py-4 text-sm font-medium tracking-[0.16em] text-primary-foreground uppercase"
+                key={h.label}
+                href={h.href}
+                className="group flex flex-col items-center gap-2 rounded-lg border border-transparent px-1 py-3 text-center transition-all duration-400 hover:border-gold/30 hover:bg-ink/40 sm:px-2"
               >
-                Book Consultation <CalendarDays className="size-4" />
+                <h.icon
+                  className="size-5 text-gold transition-all duration-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_var(--gold)] sm:size-7"
+                  strokeWidth={1.4}
+                />
+                <span className="text-[0.5rem] leading-tight tracking-[0.12em] whitespace-pre-line text-muted-foreground uppercase transition-colors group-hover:text-gold sm:text-[0.6rem] sm:tracking-[0.18em]">
+                  {h.label}
+                </span>
               </a>
-              <a
-                href="#treatments"
-                className="glow-ring flex items-center justify-between gap-4 rounded-md border border-gold/40 bg-ink/50 px-6 py-4 text-sm tracking-[0.16em] text-foreground uppercase backdrop-blur-sm"
-              >
-                Explore Treatments <ArrowRight className="size-4 text-gold" />
-              </a>
-            </div>
-          </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -299,20 +294,30 @@ function Home() {
       <section id="treatments" className="section-light px-6 py-24 md:py-32">
         <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="Signature Treatments"
+          eyebrow="Discover Our Treatment"
           title={
-            <>
-              Solutions For Your
-              <br />
-              Hair &amp; Aesthetic Goals
-            </>
+            <span className="block space-y-1">
+              <span className="block">
+                Restore <span className="text-gold">—</span> What you&rsquo;ve lost
+              </span>
+              <span className="block">
+                Refine <span className="text-gold">—</span> What you already have
+              </span>
+              <span className="block">
+                Redefine <span className="text-gold">—</span> What&rsquo;s possible
+              </span>
+            </span>
           }
         />
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {treatments.map((t, i) => (
             <Reveal key={t.title} delay={i * 0.1}>
-              <article className="glow-ring media-zoom group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card">
-                <div className="h-52 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => openMenu(t.category)}
+                className="glow-ring media-zoom group flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-card text-left"
+              >
+                <div className="h-52 w-full overflow-hidden">
                   <img
                     src={t.image}
                     alt={t.title}
@@ -328,7 +333,7 @@ function Home() {
                     <ArrowRight className="size-4" />
                   </span>
                 </div>
-              </article>
+              </button>
             </Reveal>
           ))}
           </div>
@@ -336,13 +341,7 @@ function Home() {
       </section>
 
       {/* QUOTE */}
-      <section className="relative overflow-hidden border-y border-border">
-        <img
-          src={clinic1}
-          alt="WBSK clinic interior"
-          loading="lazy"
-          className="absolute inset-0 size-full object-cover opacity-25"
-        />
+      <section className="relative overflow-hidden border-y border-border bg-card/40">
         <div className="relative mx-auto max-w-3xl px-6 py-24 text-center">
           <Reveal>
             <p className="font-display text-5xl text-gold">&ldquo;</p>
@@ -415,48 +414,33 @@ function Home() {
         </div>
       </section>
 
-      {/* JOURNEY / STACKED STEPS */}
-      <section id="journey" className="px-6 py-24 md:py-32">
-        <SectionHeading eyebrow="The Hair Transplant Journey" title="Step by Step" />
-        <StackedSteps steps={steps} />
-      </section>
-
       {/* VIDEO */}
-      <section className="mx-auto max-w-5xl px-6 pb-24 md:pb-32">
+      <section className="mx-auto max-w-5xl px-5 py-24 sm:px-6 md:py-32">
         <SectionHeading eyebrow="Watch the art in action" title="Procedure Film" />
         <Reveal delay={0.12}>
-          <div className="glow-ring mt-12 overflow-hidden rounded-xl border border-border bg-card">
-            <video
-              className="aspect-video w-full object-cover"
-              src={procedureVideo.url}
-              poster={hairTransAsset.url}
-              controls
-              playsInline
-              preload="none"
-            />
-          </div>
+          <VideoCarousel
+            slides={[
+              {
+                title: "Hairline Design & Extraction",
+                caption: "Inside the theatre with Dr. Waqar",
+                src: procedureVideo.url,
+                poster: hairTransAsset.url,
+              },
+              {
+                title: "Graft Implantation",
+                caption: "Angle, depth and direction — placed by hand",
+                src: procedureVideo2.url,
+                poster: bannerAsset.url,
+              },
+            ]}
+          />
         </Reveal>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {[
-            { t: "Hairline Design", d: "30 sec", img: hair2Asset.url },
-            { t: "Graft Implantation", d: "30 sec", img: bannerAsset.url },
-          ].map((v, i) => (
-            <Reveal key={v.t} delay={i * 0.1}>
-              <div className="glow-ring media-zoom flex items-center gap-4 overflow-hidden rounded-xl border border-border bg-card p-3">
-                <div className="relative size-20 shrink-0 overflow-hidden rounded-md">
-                  <img src={v.img} alt={v.t} loading="lazy" className="size-full object-cover" />
-                  <span className="absolute inset-0 grid place-items-center bg-ink/40">
-                    <Play className="size-5 text-gold" />
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm">{v.t}</p>
-                  <p className="text-xs text-muted-foreground">{v.d}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+      </section>
+
+      {/* JOURNEY / STACKED STEPS */}
+      <section id="journey" className="px-5 pb-24 sm:px-6 md:pb-32">
+        <SectionHeading eyebrow="The Hair Transplant Journey" title="Step by Step" />
+        <StackedSteps steps={steps} />
       </section>
 
       {/* DOCTOR */}

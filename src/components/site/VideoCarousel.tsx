@@ -13,7 +13,7 @@ export function VideoCarousel({ slides }: { slides: FilmSlide[] }) {
     setI((v) => (v + step + slides.length) % slides.length);
   };
 
-  const s = slides[i];
+  const s = slides[i]!;
 
   return (
     <div className="relative mt-12">
