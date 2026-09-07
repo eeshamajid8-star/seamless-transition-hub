@@ -414,48 +414,33 @@ function Home() {
         </div>
       </section>
 
-      {/* JOURNEY / STACKED STEPS */}
-      <section id="journey" className="px-6 py-24 md:py-32">
-        <SectionHeading eyebrow="The Hair Transplant Journey" title="Step by Step" />
-        <StackedSteps steps={steps} />
-      </section>
-
       {/* VIDEO */}
-      <section className="mx-auto max-w-5xl px-6 pb-24 md:pb-32">
+      <section className="mx-auto max-w-5xl px-5 py-24 sm:px-6 md:py-32">
         <SectionHeading eyebrow="Watch the art in action" title="Procedure Film" />
         <Reveal delay={0.12}>
-          <div className="glow-ring mt-12 overflow-hidden rounded-xl border border-border bg-card">
-            <video
-              className="aspect-video w-full object-cover"
-              src={procedureVideo.url}
-              poster={hairTransAsset.url}
-              controls
-              playsInline
-              preload="none"
-            />
-          </div>
+          <VideoCarousel
+            slides={[
+              {
+                title: "Hairline Design & Extraction",
+                caption: "Inside the theatre with Dr. Waqar",
+                src: procedureVideo.url,
+                poster: hairTransAsset.url,
+              },
+              {
+                title: "Graft Implantation",
+                caption: "Angle, depth and direction — placed by hand",
+                src: procedureVideo2.url,
+                poster: bannerAsset.url,
+              },
+            ]}
+          />
         </Reveal>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {[
-            { t: "Hairline Design", d: "30 sec", img: hair2Asset.url },
-            { t: "Graft Implantation", d: "30 sec", img: bannerAsset.url },
-          ].map((v, i) => (
-            <Reveal key={v.t} delay={i * 0.1}>
-              <div className="glow-ring media-zoom flex items-center gap-4 overflow-hidden rounded-xl border border-border bg-card p-3">
-                <div className="relative size-20 shrink-0 overflow-hidden rounded-md">
-                  <img src={v.img} alt={v.t} loading="lazy" className="size-full object-cover" />
-                  <span className="absolute inset-0 grid place-items-center bg-ink/40">
-                    <Play className="size-5 text-gold" />
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm">{v.t}</p>
-                  <p className="text-xs text-muted-foreground">{v.d}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+      </section>
+
+      {/* JOURNEY / STACKED STEPS */}
+      <section id="journey" className="px-5 pb-24 sm:px-6 md:pb-32">
+        <SectionHeading eyebrow="The Hair Transplant Journey" title="Step by Step" />
+        <StackedSteps steps={steps} />
       </section>
 
       {/* DOCTOR */}
