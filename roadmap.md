@@ -8,3 +8,7 @@
 - [x] White background for Signature Treatments, A Passion For Perfection, Quick Answers
 - [x] Drawer navigation matching the WBSK app reference (icon list + submenus)
 - [x] Google fonts wired through root head
+- [x] Hero auto-looping slider + 5 icon row (Reviews as 5th)
+- [x] Treatment cards open matching menu submenus
+- [x] Procedure Film moved above Steps with manual 2-video carousel
+- [x] Copy updates + quote background image removed + mobile responsiveness
