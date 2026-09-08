@@ -217,7 +217,7 @@ function Home() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pt-24 pb-5 sm:px-6 sm:pt-28 sm:pb-12 md:pb-16">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pt-24 pb-20 sm:px-6 sm:pt-28 sm:pb-12 md:pb-16">
           <HeroSlider slides={heroSlides} />
 
           <div className="relative mt-6 grid w-full grid-cols-2 gap-2.5 sm:mt-8 sm:max-w-xl sm:gap-3">
