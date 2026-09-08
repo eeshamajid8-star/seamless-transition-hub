@@ -187,6 +187,27 @@
   }
 }
 
+@keyframes service-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility service-marquee {
+  animation: service-marquee 19s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-marquee {
+    animation-play-state: paused;
+  }
+}
+
 /* Light (white) sections — re-scopes the semantic tokens so every child
    component keeps using the same token names. */
 @utility section-light {

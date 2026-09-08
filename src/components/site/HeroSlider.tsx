@@ -21,11 +21,13 @@ export function HeroSlider({
   const [i, setI] = useState(0);
 
   useEffect(() => {
+    if (slides.length < 2) return;
     const id = window.setInterval(() => setI((v) => (v + 1) % slides.length), interval);
     return () => window.clearInterval(id);
   }, [slides.length, interval]);
 
-  const slide = slides[i]!;
+  const slide = slides[i];
+  if (!slide) return null;
   const hasText = Boolean(slide.eyebrow || slide.line1 || slide.sub);
 
   return (
@@ -34,18 +36,20 @@ export function HeroSlider({
       <AnimatePresence mode="sync">
         <motion.div
           key={i}
-          initial={{ opacity: 0, scale: 1.14, filter: "blur(14px)" }}
+          initial={{ opacity: 0, scale: 1.12, filter: "blur(12px)", clipPath: "inset(2% 0 2% 0)" }}
           animate={{
             opacity: 1,
             scale: 1,
             filter: "blur(0px)",
-            transition: { duration: 2, ease: [0.16, 0.84, 0.24, 1] },
+            clipPath: "inset(0% 0 0% 0)",
+            transition: { duration: 1.8, ease: [0.16, 0.84, 0.24, 1] },
           }}
           exit={{
             opacity: 0,
             scale: 0.985,
             filter: "blur(10px)",
-            transition: { duration: 1.1, ease: [0.5, 0, 0.75, 0] },
+            clipPath: "inset(1% 0 1% 0)",
+            transition: { duration: 1.15, ease: [0.5, 0, 0.75, 0] },
           }}
           className="absolute inset-0"
         >
@@ -54,7 +58,7 @@ export function HeroSlider({
               src={slide.src}
               alt={slide.line1 ? `${slide.line1} ${slide.line2 ?? ""}` : "WBSK clinic"}
               className="size-full object-cover object-top"
-              animate={{ scale: [1, 1.06] }}
+              animate={{ scale: [1, 1.065], x: [0, i % 2 === 0 ? -8 : 8] }}
               transition={{ duration: interval / 1000 + 2, ease: "linear" }}
             />
           ) : (
@@ -71,7 +75,8 @@ export function HeroSlider({
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-linear-to-t from-background via-background/75 to-background/45" />
+      <div className="absolute inset-0 bg-linear-to-t from-background via-background/70 to-background/35" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-background to-transparent" />
 
       {/* text — only slides that carry copy show it; others stay clean */}
       <div className="relative">

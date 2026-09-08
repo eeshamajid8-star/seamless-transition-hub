@@ -10,10 +10,6 @@ import {
   MessageCircle,
   Star,
   Check,
-  Sprout,
-  Syringe,
-  Smile,
-  Droplets,
 } from "lucide-react";
 
 import { IntroLogo } from "@/components/site/IntroLogo";
@@ -23,6 +19,13 @@ import { StackedSteps, type Step } from "@/components/site/Steps";
 import { HeroSlider, type HeroSlide } from "@/components/site/HeroSlider";
 import { VideoCarousel } from "@/components/site/VideoCarousel";
 import { openMenu, type MenuCategory } from "@/components/site/menu-store";
+import {
+  BodyContourIcon,
+  HairTransplantIcon,
+  InjectionIcon,
+  PremiumStarIcon,
+  SkinProfileIcon,
+} from "@/components/site/ServiceIcons";
 
 import bannerAsset from "@/assets/banner.jpeg.asset.json";
 import hairTransAsset from "@/assets/hairtrans.jpeg.asset.json";
@@ -107,15 +110,31 @@ const heroSlides: HeroSlide[] = [
   { kind: "image", src: prp },
   { kind: "video", src: procedureVideo2.url, poster: bannerAsset.url },
   { kind: "image", src: aestheticImg },
+  { kind: "image", src: clinic1 },
+  { kind: "image", src: hair2Asset.url },
 ];
 
-const heroIcons: { icon: typeof Sprout; label: string; href: string }[] = [
-  { icon: Sprout, label: "Hair\nTransplant", href: "#treatments" },
-  { icon: Syringe, label: "PRP / PRGF\nExosomes", href: "#treatments" },
-  { icon: Smile, label: "Skin\nAesthetics", href: "#treatments" },
-  { icon: Droplets, label: "Botox\n& Fillers", href: "#treatments" },
-  { icon: Star, label: "Reviews", href: "#clinic" },
+const heroIcons = [
+  { icon: HairTransplantIcon, label: "Hair\nTransplant", href: "#treatments" },
+  { icon: InjectionIcon, label: "PRP / PRGF\nExosomes", href: "#treatments" },
+  { icon: SkinProfileIcon, label: "Skin\nAesthetics", href: "#treatments" },
+  { icon: BodyContourIcon, label: "Botox\n& Fillers", href: "#treatments" },
+  { icon: PremiumStarIcon, label: "Reviews", href: "#clinic" },
 ];
+
+function ServiceIconLink({ item }: { item: (typeof heroIcons)[number] }) {
+  return (
+    <a
+      href={item.href}
+      className="group flex w-[6.75rem] shrink-0 flex-col items-center justify-center gap-2 px-2 py-3 text-center sm:w-auto sm:flex-1"
+    >
+      <item.icon className="size-9 text-gold transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_var(--gold)] sm:size-10" />
+      <span className="text-[0.56rem] leading-[1.35] tracking-[0.13em] whitespace-pre-line text-muted-foreground uppercase transition-colors group-hover:text-gold sm:text-[0.6rem] sm:tracking-[0.18em]">
+        {item.label}
+      </span>
+    </a>
+  );
+}
 
 const results = [
   { before: before1, after: after1, meta: "FUE • 4500 grafts • 10 months", grade: "Norwood Grade 3" },
@@ -198,40 +217,37 @@ function Home() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pt-28 pb-12 sm:px-6 md:pb-20">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pt-24 pb-20 sm:px-6 sm:pt-28 sm:pb-12 md:pb-16">
           <HeroSlider slides={heroSlides} />
 
-          <div className="relative mt-8 flex w-full flex-col gap-3 sm:max-w-xl sm:flex-row">
+          <div className="relative mt-6 grid w-full grid-cols-2 gap-2.5 sm:mt-8 sm:max-w-xl sm:gap-3">
             <a
               href="#contact"
-              className="glow-ring bg-gold-gradient flex items-center justify-between gap-4 rounded-md border border-transparent px-5 py-3.5 text-xs font-medium tracking-[0.16em] text-primary-foreground uppercase sm:px-6 sm:py-4 sm:text-sm"
+               className="glow-ring bg-gold-gradient flex min-w-0 items-center justify-between gap-2 rounded-md border border-transparent px-3 py-3 text-[0.62rem] font-medium tracking-[0.1em] text-primary-foreground uppercase sm:gap-4 sm:px-6 sm:py-4 sm:text-sm sm:tracking-[0.16em]"
             >
               Book Consultation <CalendarDays className="size-4 shrink-0" />
             </a>
             <a
               href="#results"
-              className="glow-ring flex items-center justify-between gap-4 rounded-md border border-gold/40 bg-ink/50 px-5 py-3.5 text-xs tracking-[0.16em] text-foreground uppercase backdrop-blur-sm sm:px-6 sm:py-4 sm:text-sm"
+               className="glow-ring flex min-w-0 items-center justify-between gap-2 rounded-md border border-gold/40 bg-ink/50 px-3 py-3 text-[0.62rem] tracking-[0.1em] text-foreground uppercase backdrop-blur-sm sm:gap-4 sm:px-6 sm:py-4 sm:text-sm sm:tracking-[0.16em]"
             >
               View Results <ArrowRight className="size-4 shrink-0 text-gold" />
             </a>
           </div>
 
-          <div className="relative mt-10 grid grid-cols-5 gap-1 sm:gap-4">
-            {heroIcons.map((h) => (
-              <a
-                key={h.label}
-                href={h.href}
-                className="group flex flex-col items-center gap-2 rounded-lg border border-transparent px-1 py-3 text-center transition-all duration-400 hover:border-gold/30 hover:bg-ink/40 sm:px-2"
-              >
-                <h.icon
-                  className="size-5 text-gold transition-all duration-400 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_var(--gold)] sm:size-7"
-                  strokeWidth={1.4}
-                />
-                <span className="text-[0.5rem] leading-tight tracking-[0.12em] whitespace-pre-line text-muted-foreground uppercase transition-colors group-hover:text-gold sm:text-[0.6rem] sm:tracking-[0.18em]">
-                  {h.label}
-                </span>
-              </a>
-            ))}
+          <div className="relative mt-4 -mx-5 overflow-hidden border-y border-gold/15 bg-ink/35 sm:mx-0 sm:mt-8 sm:rounded-md sm:border sm:px-4">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-background to-transparent sm:hidden" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-background to-transparent sm:hidden" />
+            <div className="service-marquee flex sm:hidden">
+              {[...heroIcons, ...heroIcons].map((item, index) => (
+                <ServiceIconLink key={`${item.label}-${index}`} item={item} />
+              ))}
+            </div>
+            <div className="hidden grid-cols-5 sm:grid">
+              {heroIcons.map((item) => (
+                <ServiceIconLink key={item.label} item={item} />
+              ))}
+            </div>
           </div>
         </div>
       </section>

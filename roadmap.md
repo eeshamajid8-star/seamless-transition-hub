@@ -12,3 +12,4 @@
 - [x] Treatment cards open matching menu submenus
 - [x] Procedure Film moved above Steps with manual 2-video carousel
 - [x] Copy updates + quote background image removed + mobile responsiveness
+- [x] Seven-slide hero + reference-matched service icons + mobile icon marquee
