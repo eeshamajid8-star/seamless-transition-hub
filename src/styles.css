@@ -187,23 +187,23 @@
   }
 }
 
-@keyframes service-marquee {
+@keyframes service-marquee-left {
   from {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 }
 
-@utility service-marquee {
-  animation: service-marquee 19s linear infinite;
+@utility service-marquee-left {
+  animation: service-marquee-left 22s linear infinite;
   width: max-content;
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .service-marquee {
+  .service-marquee-left {
     animation-play-state: paused;
   }
 }
